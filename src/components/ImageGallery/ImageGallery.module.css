@@ -1,0 +1,23 @@
+.ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+  padding-bottom: 10px;
+}
+
+.title {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

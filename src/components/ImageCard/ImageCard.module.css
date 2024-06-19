@@ -1,0 +1,10 @@
+.img {
+  width: 400px;
+  height: 220px;
+  object-fit: cover;
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 300ms ease-in-out;
+    cursor: pointer;
+  }
+}
