@@ -5,7 +5,7 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import Loader from "./Loader/Loader";
 import SearchBar from "./SearchBar/SearchBar";
 import { getPostByQuery } from "./Api/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -16,6 +16,7 @@ const App = () => {
   const [total, setTotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const lastCardRef = useRef(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -37,6 +38,12 @@ const App = () => {
     }
   }, [page, query]);
 
+  useEffect(() => {
+    if (lastCardRef.current) {
+      lastCardRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [cards]);
+
   const toggleModal = () => setIsOpen((prev) => !prev);
   const openImage = (image) => {
     toggleModal();
@@ -53,10 +60,13 @@ const App = () => {
           cards={cards}
           total={total}
           isLoading={isLoading}
+          lastCardRef={lastCardRef}
         />
       )}
       {isLoading && <Loader />}
-      {!isLoading && cards.length < total && <LoadMoreBtn setPage={setPage} />}
+      {!isLoading && !error && cards.length < total && (
+        <LoadMoreBtn setPage={setPage} />
+      )}
       {isOpen && <ImageModal onClose={toggleModal} modalImage={modalImage} />}
     </>
   );

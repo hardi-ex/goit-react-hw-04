@@ -9,10 +9,12 @@
 }
 
 .title {
-  padding-top: 30px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  background-color: rgb(49, 37, 128);
 }
 
 .text {
